@@ -1,74 +1,129 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useState } from 'react';
+import {
+  ScrollView,
+  View,
+  Text,
+  Image,
+  TextInput,
+  StyleSheet,
+  Linking,
+  TouchableOpacity,
+} from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const HomeScreen = () => {
+  const [favoriteCourse, setFavoriteCourse] = useState('');
 
-export default function HomeScreen() {
+  const coreCourses = [
+    'CS 504 - Software Engineering',
+    'CS 506 - Programming for computing',
+    'CS 519 - CloudComputing Overview',
+    'CS 533 - Compute Architecture',
+    'CS 547 - Secure Systems and Programs',
+    'CS 622 - Discrete Matha and Algorithms',
+    'DS 510 - AI for data science',
+    'DS 620 - MachineLearning and Deep Learning',
+  ];
+
+  const depthCourses = ['CS 624 - FullStack-Mobile App', 'CS 628 - FullStack-Web App'];
+  
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
+      
+      <Image source={require('@/assets/images/icon.png')} style={styles.icon} />
+      
+      <View style={styles.headingBar}>
+      <Text style={styles.heading}>MSCS Core Courses</Text>
+      </View>
+      {coreCourses.map((course, index) => (
+        <Text key={`core-${index}`} style={styles.courseItem}>
+          {course}
+        </Text>
+      ))}
+      <View style={styles.headingBar}>
+      <Text style={styles.heading}>Depth of Study Courses</Text>
+      </View>
+      {depthCourses.map((course, index) => (
+        <Text key={`depth-${index}`} style={styles.courseItem}>
+          {course}
+        </Text>
+      ))}
+
+      
+      <View style={styles.headingBar}>
+      <Text style={styles.label}>Enter your favorite course:</Text></View>
+      <TextInput
+        style={styles.input}
+        placeholder="e.g. CS 504"
+        value={favoriteCourse}
+        onChangeText={setFavoriteCourse}
+      />
+
+      {favoriteCourse !== '' && (
+        <Text style={styles.favorite}>
+          Your favorite course is: {favoriteCourse}
+        </Text>
+      )}
+
+      
+    </ScrollView>
   );
-}
+};
+
+export default HomeScreen;
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    padding: 20,
+    paddingBottom: 40,
+    backgroundColor: '#f5f8fa',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  headingBar: {
+    backgroundColor: 'yellow', // or '#FFD700'
+    padding: 10,
+    borderRadius: 6,
+    marginTop: 20,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  icon: {
+    width: 120,
+    height: 120,
+    alignSelf: 'center',
+    marginBottom: 20,
+  },
+  heading: {
+    fontSize: 30,
+    fontWeight: '600',
+    marginVertical: 10,
+    color: 'black',
+  },
+  courseItem: {
+    fontSize: 16,
+    color: '#333',
+    paddingVertical: 2,
+  },
+  label: {
+    marginTop: 20,
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  input: {
+    borderColor: '#ccc',
+    borderWidth: 1,
+    padding: 10,
+    marginTop: 8,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+  },
+  favorite: {
+    fontSize: 16,
+    marginTop: 10,
+    color: '#007aff',
+  },
+  link: {
+    fontSize: 16,
+    marginTop: 20,
+    color: '#0066cc',
+    textDecorationLine: 'underline',
+    alignSelf: 'center',
   },
 });

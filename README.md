@@ -1,50 +1,8 @@
-# Welcome to your Expo app 👋
+Input
+Users can enter their preferred MSCS course in the TextInput form that the application uses to receive user input.  This input customizes the app experience and enables direct interaction with the course list display.  To further establish the app's visual identity, a picture (icon.png) is fetched from the./assets directory.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Process
+An arrow function is a functional component used by the application to process data internally.  In arrays divided into core, depth of study, and capstone courses, it keeps specified MSCS courses.  The application re-renders to reflect any new data and modifies its state in response to user interaction.  Layout elements like ScrollView and View arrange the content, while the StyleSheet component applies internal styling.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Output
+The result is a scrollable page that shows the user's favorite course in addition to eight core, two depth of study, and one capstone courses.  A neat, mobile-friendly user interface is ensured with styled headings and a well-organized layout.
